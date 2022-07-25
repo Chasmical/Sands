@@ -1,0 +1,20 @@
+<Project>
+
+  <PropertyGroup>
+
+    <!-- Target .NET Framework 4.7.1 - latest suitable version -->
+    <TargetFramework>net471</TargetFramework>
+
+    <!-- Enable latest C# features -->
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+
+    <NoWarn>$(NoWarn),IDE0160</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <NoWarn>$(NoWarn),1591</NoWarn> <!-- Suppress the 'Missing XML Documentation' warning -->
+  </PropertyGroup>
+
+</Project>

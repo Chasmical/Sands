@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">text/microsoft-resx</resheader>
+  <resheader name="version">2.0</resheader>
+  <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms</resheader>
+  <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms</resheader>
+
+  <data name="TemplateResources" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateResources.bin;System.Byte[], mscorlib</value>
+  </data>
+  <data name="TemplateSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateSprite.png;System.Byte[], mscorlib</value>
+  </data>
+</root>
