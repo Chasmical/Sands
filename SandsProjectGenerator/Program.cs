@@ -203,14 +203,11 @@ namespace SandsProjectGenerator
 
                 UsingResources = ParseBooleanResponse(resourcesStr);
 
-                UsingMicroTemplate = false;
-                if (!UsingRogueLibs)
-                {
-                    string useMicroStr = Prompt("# Micro Template",
-                                                "Do you want to use a micro plugin template? (y/n)",
-                                                defaultValue: "no");
-                    UsingMicroTemplate = ParseBooleanResponse(useMicroStr);
-                }
+                string useMicroStr = Prompt("# Micro Template",
+                                            "Do you want to use a micro plugin template? (y/n)",
+                                            defaultValue: "no");
+
+                UsingMicroTemplate = ParseBooleanResponse(useMicroStr);
                 #endregion
 
                 #region Confirm configuration
@@ -237,7 +234,7 @@ namespace SandsProjectGenerator
                 WriteField("Version         ", Version, "v");
                 WriteBoolField("Using RogueLibs ", UsingRogueLibs);
                 WriteBoolField("Using Resources ", UsingResources);
-                if (!UsingRogueLibs) WriteBoolField("Micro-template  ", UsingMicroTemplate);
+                WriteBoolField("Micro-template  ", UsingMicroTemplate);
 
                 string doGenerateStr = Prompt("Do you want to generate a project with this configuration?",
                                               "Enter 'no' to enter the configuration again.");
@@ -381,8 +378,14 @@ namespace SandsProjectGenerator
                 string guid = @$"{Author.ToLowerInvariant()}.streetsofrogue.{ProjectName.ToLowerInvariant()}";
                 if (UsingMicroTemplate)
                 {
+                    if (UsingRogueLibs)
+                    {
+                        writer.WriteLine("using RogueLibsCore;");
+                        writer.WriteLine();
+                    }
                     writer.WriteLine($"namespace {ProjectName};");
                     writer.WriteLine($"[BepInEx.BepInPlugin(@\"{guid}\", \"{ProjectPrefix}{PluginTitle}\", \"{Version}\")]");
+                    if (UsingRogueLibs) writer.WriteLine("[BepInEx.BepInDependency(RogueLibs.GUID, RogueLibs.CompiledVersion)]");
                     writer.WriteLine($"public class {PluginClassName} : BepInEx.BaseUnityPlugin");
                     writer.WriteLine("{");
                     writer.WriteLine("    public void Awake() { }");
