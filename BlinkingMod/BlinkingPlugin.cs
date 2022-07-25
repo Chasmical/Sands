@@ -17,7 +17,7 @@ public class BlinkingPlugin : BepInEx.BaseUnityPlugin
     private static readonly Dictionary<Agent, Coroutine> coroutines = new Dictionary<Agent, Coroutine>();
     private static readonly Dictionary<Agent, float> blinkTimes = new Dictionary<Agent, float>();
 
-    private static void Agent_Start(Agent __instance)
+    public static void Agent_Start(Agent __instance)
     {
         if (coroutines.TryGetValue(__instance, out Coroutine? coroutine))
         {
