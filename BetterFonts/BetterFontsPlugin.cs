@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,16 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
                       null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(MenuButtonHelper_SetupText3))));
         harmony.Patch(AccessTools.Method(typeof(MenuGUI), nameof(MenuGUI.RealAwake)),
                       null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(MenuGUI_RealAwake))));
+        harmony.Patch(AccessTools.Method(typeof(ButtonHelper), nameof(ButtonHelper.RealStart)),
+                      null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(ButtonHelper_RealStart))));
+        harmony.Patch(AccessTools.Method(typeof(ButtonHelper), nameof(ButtonHelper.RealStartB)),
+                      null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(ButtonHelper_RealStartB))));
+        harmony.Patch(AccessTools.Method(typeof(MenuButtonHelper), "Start"),
+                      null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(MenuButtonHelper_Start))));
+        harmony.Patch(AccessTools.Method(typeof(WorldSpaceGUI), "RealStart"),
+                      null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(WorldSpaceGUI_RealStart))));
+        harmony.Patch(AccessTools.Method(typeof(TalkText), "Start"),
+                      null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(TalkText_Start))));
     }
     public IEnumerator Start()
     {
@@ -73,4 +84,54 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
         Get("ChineseButton").font = FusionPixel;
         Get("KoreanButton").font = FusionPixel;
     }
+    public static void ButtonHelper_RealStart(ButtonHelper __instance)
+    {
+        if (__instance.name.StartsWith("ScrollingMenuButton", StringComparison.Ordinal))
+        {
+            Vector2 offsetMin = __instance.myTextRect.offsetMin;
+            offsetMin.y = __instance.gc.munroFont == FusionPixel ? -34f : -40f;
+            __instance.myTextRect.offsetMin = offsetMin;
+            Vector2 offsetMax = __instance.myTextRect.offsetMax;
+            offsetMax.y = __instance.gc.munroFont == FusionPixel ? 36f : 32f;
+            __instance.myTextRect.offsetMax = offsetMax;
+        }
+        else if (__instance.gc.munroFont == FusionPixel)
+        {
+            Vector2 offsetMin = __instance.myTextRect.offsetMin;
+            offsetMin.y += 10f;
+            __instance.myTextRect.offsetMin = offsetMin;
+        }
+    }
+    public static void ButtonHelper_RealStartB(ButtonHelper __instance, out bool ___didRealStart)
+    {
+        ___didRealStart = false;
+    }
+    public static void MenuButtonHelper_Start(MenuButtonHelper __instance)
+    {
+        if (__instance.gc.munroFont == FusionPixel)
+        {
+            Vector2 offsetMin = __instance.myTextRect.offsetMin;
+            offsetMin.y += 10f;
+            __instance.myTextRect.offsetMin = offsetMin;
+        }
+    }
+    public static void WorldSpaceGUI_RealStart(WorldSpaceGUI __instance)
+    {
+        if (GameController.gameController.munroFont == FusionPixel)
+        {
+            Vector2 offsetMin = __instance.objectNameDisplayTextRect.offsetMin;
+            offsetMin.y += 10f;
+            __instance.objectNameDisplayTextRect.offsetMin = offsetMin;
+        }
+    }
+    public static void TalkText_Start(TalkText __instance)
+    {
+        if (GameController.gameController.munroFont == FusionPixel)
+        {
+            Vector2 offsetMin = __instance.myTextRect.offsetMin;
+            offsetMin.y += 10f;
+            __instance.myTextRect.offsetMin = offsetMin;
+        }
+    }
+
 }
