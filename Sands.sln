@@ -20,11 +20,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemolishThatFreakingWall", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snap", "Snap\Snap.csproj", "{565FD148-0031-4D89-9AC3-F05ED1F82496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnableRLDebugTools", "EnableRLDebugTools\EnableRLDebugTools.csproj", "{E5AE0142-5B15-4400-8E1F-7A7A1DD37ADF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnableRLDebugTools", "EnableRLDebugTools\EnableRLDebugTools.csproj", "{E5AE0142-5B15-4400-8E1F-7A7A1DD37ADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterFonts", "BetterFonts\BetterFonts.csproj", "{B688DDE9-ECB3-478B-955D-72AB4BCF04E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterFonts", "BetterFonts\BetterFonts.csproj", "{B688DDE9-ECB3-478B-955D-72AB4BCF04E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImmediateLogger", "ImmediateLogger\ImmediateLogger.csproj", "{4A2AD966-D754-4A9D-B899-0CA407E1D828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImmediateLogger", "ImmediateLogger\ImmediateLogger.csproj", "{4A2AD966-D754-4A9D-B899-0CA407E1D828}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57CB9133-955C-4FED-A8AF-D4492D4A8834}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
