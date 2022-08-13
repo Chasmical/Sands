@@ -1,7 +1,7 @@
 using HarmonyLib;
 
 namespace DontSendMyData;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.dontsendmydata", "[S&S] Don't Send My Data", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.dontsendmydata", "S&S: Don't Send My Data", "1.0.0")]
 public class DontSendMyDataPlugin : BepInEx.BaseUnityPlugin
 {
     public void Awake()

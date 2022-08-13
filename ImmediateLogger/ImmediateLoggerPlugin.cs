@@ -3,7 +3,7 @@ using BepInEx;
 using BepInEx.Logging;
 
 namespace ImmediateLogger;
-[BepInPlugin(@"abbysssal.streetsofrogue.immediatelogger", "[S&S] Immediate Logger", "1.0.0")]
+[BepInPlugin(@"abbysssal.streetsofrogue.immediatelogger", "S&S: Immediate Logger", "1.0.0")]
 public class ImmediateLoggerPlugin : BaseUnityPlugin, ILogListener
 {
     private TextWriter writer = null!;

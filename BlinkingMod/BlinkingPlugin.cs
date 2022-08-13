@@ -4,7 +4,7 @@ using HarmonyLib;
 using UnityEngine;
 
 namespace BlinkingMod;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.blinkingmod", "[S&S] Blinking Mod", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.blinkingmod", "S&S: Blinking Mod", "1.0.0")]
 public class BlinkingPlugin : BepInEx.BaseUnityPlugin
 {
     public void Awake()

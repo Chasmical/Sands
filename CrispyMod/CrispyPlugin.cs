@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CrispyMod
 {
-    [BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.crispymod", "[S&S] Crispy Mod", "1.0.0")]
+    [BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.crispymod", "S&S: Crispy Mod", "1.0.0")]
     public class CrispyPlugin : BepInEx.BaseUnityPlugin
     {
         public void Awake()

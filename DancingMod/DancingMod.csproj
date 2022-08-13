@@ -5,7 +5,7 @@
     <!-- Project Properties -->
 
     <!-- Header -->
-    <AssemblyName>[S&amp;S] DancingMod</AssemblyName>
+    <AssemblyName>Sands_DancingMod</AssemblyName>
     <RootNamespace>DancingMod</RootNamespace>
     <PackageId>DancingMod</PackageId>
     <Version>1.0.0</Version>
@@ -14,7 +14,7 @@
     <Copyright></Copyright>
 
     <!-- Title, Description, Tags -->
-    <Title>[S&amp;S] Dancing Mod</Title>
+    <Title>S&amp;S: Dancing Mod</Title>
     <Description>
 
     </Description>

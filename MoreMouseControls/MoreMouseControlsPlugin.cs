@@ -3,7 +3,7 @@ using Light2D;
 using UnityEngine;
 
 namespace MoreMouseControls;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.moremousecontrols", "[S&S] More Mouse Controls", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.moremousecontrols", "S&S: More Mouse Controls", "1.0.0")]
 public class MoreMouseControlsPlugin : BepInEx.BaseUnityPlugin
 {
     public void Awake()

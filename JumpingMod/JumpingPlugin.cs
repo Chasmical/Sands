@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace JumpingMod;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.jumpingmod", "[S&S] Jumping Mod", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.jumpingmod", "S&S: Jumping Mod", "1.0.0")]
 public class JumpingPlugin : BepInEx.BaseUnityPlugin
 {
     public Agent? Player => GameController.gameController?.playerAgent;

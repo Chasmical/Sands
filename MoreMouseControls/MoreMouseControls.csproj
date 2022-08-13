@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 
     <!-- Project Properties -->
 
     <!-- Header -->
-    <AssemblyName>[S&amp;S] MoreMouseControls</AssemblyName>
+    <AssemblyName>Sands_MoreMouseControls</AssemblyName>
     <RootNamespace>MoreMouseControls</RootNamespace>
     <PackageId>MoreMouseControls</PackageId>
     <Version>1.0.0</Version>
@@ -14,7 +14,7 @@
     <Copyright></Copyright>
 
     <!-- Title, Description, Tags -->
-    <Title>[S&amp;S] More Mouse Controls</Title>
+    <Title>S&amp;S: More Mouse Controls</Title>
     <Description>
 
     </Description>

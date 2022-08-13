@@ -2,7 +2,7 @@ using HarmonyLib;
 using UnityEngine;
 
 namespace DemolishThatFreakingWall;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.demolishthatfreakingwall", "[S&S] Demolish That Freaking Wall", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.demolishthatfreakingwall", "S&S: Demolish That Freaking Wall", "1.0.0")]
 public class DemolishThatFreakingWallPlugin : BepInEx.BaseUnityPlugin
 {
     public void Awake()

@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 namespace Snap;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.snap", "[S&S] Snap", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.snap", "S&S: Snap", "1.0.0")]
 public class SnapPlugin : BepInEx.BaseUnityPlugin
 {
     private float setZoom = -1f;

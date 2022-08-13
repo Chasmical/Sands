@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 
     <!-- Project Properties -->
 
     <!-- Header -->
-    <AssemblyName>[S&amp;S] BetterFonts</AssemblyName>
+    <AssemblyName>Sands_BetterFonts</AssemblyName>
     <RootNamespace>BetterFonts</RootNamespace>
     <PackageId>BetterFonts</PackageId>
     <Version>1.0.0</Version>
@@ -14,7 +14,7 @@
     <Copyright></Copyright>
 
     <!-- Title, Description, Tags -->
-    <Title>[S&amp;S] Better Fonts</Title>
+    <Title>S&amp;S: Better Fonts</Title>
     <Description>
 
     </Description>

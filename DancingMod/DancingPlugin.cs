@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace DancingMod;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.dancingmod", "[S&S] Dancing Mod", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.dancingmod", "S&S: Dancing Mod", "1.0.0")]
 public class DancingPlugin : BepInEx.BaseUnityPlugin
 {
     public Agent? Player => GameController.gameController?.playerAgent;
