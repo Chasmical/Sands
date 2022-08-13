@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +35,7 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
         {
             __instance.munroFont = fontOfChoice;
             __instance.ChangeFont();
+            MenuGUI_RealAwake(__instance.menuGUI);
         }
         __instance.munroExpandedFont = MunroExtended;
         __instance.russianFont = MunroExtended;
@@ -49,12 +50,27 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
     }
     public static void MenuButtonHelper_SetupText3(MenuButtonHelper __instance)
     {
-        if (__instance.name is "RussianButton")
-            __instance.myText.text = @"–ÛÒÒÍËÈ";
+        switch (__instance.name)
+        {
+            case "RussianButton":
+                __instance.myText.text = @"–†—É—Å—Å–∫–∏–π";
+                break;
+            case "FrenchButton":
+                __instance.myText.text = @"Fran√ßais";
+                break;
+        }
     }
     public static void MenuGUI_RealAwake(MenuGUI __instance)
     {
-        __instance.settingsLanguagesContent.transform.Find("ChineseButton").GetChild(0).GetComponent<Text>().font = FusionPixel;
-        __instance.settingsLanguagesContent.transform.Find("KoreanButton").GetChild(0).GetComponent<Text>().font = FusionPixel;
+        Text Get(string name) => __instance.settingsLanguagesContent.transform.Find(name).GetChild(0).GetComponent<Text>();
+
+        Get("EnglishButton").font = MunroExtended;
+        Get("GermanButton").font = MunroExtended;
+        Get("SpanishButton").font = MunroExtended;
+        Get("BrazilianButton").font = MunroExtended;
+        Get("RussianButton").font = MunroExtended;
+        Get("FrenchButton").font = MunroExtended;
+        Get("ChineseButton").font = FusionPixel;
+        Get("KoreanButton").font = FusionPixel;
     }
 }
