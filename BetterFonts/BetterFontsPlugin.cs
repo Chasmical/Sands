@@ -10,6 +10,8 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
 {
     private static Font? MunroExtended;
     private static Font? FusionPixel;
+    private static Font? EditUndoBRK;
+    private static Font? PressStart2P;
     public void Awake()
     {
         Harmony harmony = new Harmony(Info.Metadata.GUID);
@@ -38,6 +40,8 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
         yield return req;
         MunroExtended = req.assetBundle.LoadAsset<Font>("MunroExtended");
         FusionPixel = req.assetBundle.LoadAsset<Font>("FusionPixel");
+        EditUndoBRK = req.assetBundle.LoadAsset<Font>("EditUndoBRK");
+        PressStart2P = req.assetBundle.LoadAsset<Font>("PressStart2P-Regular");
     }
     public static void GameController_Update(GameController __instance)
     {
@@ -55,8 +59,20 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
     public static bool GameController_SetFont(GameController __instance, Text myText)
     {
         string language = __instance.sessionDataBig.gameLanguage;
-        Font? font = language is @"schinese" or @"koreana" ? FusionPixel : MunroExtended;
-        if (font is not null) myText.font = font;
+        if (language is @"schinese" or @"koreana")
+        {
+            myText.font = FusionPixel;
+        }
+        else
+        {
+            myText.font = myText.font.name switch
+            {
+                "Munro" or "munro2" or "munro-expanded" or "MunroNarrow" or "MunroExtended" or "FusionPixel" => MunroExtended,
+                @"editundo" or "EditUndoBRK" => EditUndoBRK,
+                @"joystix monospace" or "PressStart2P-Regular" => PressStart2P,
+                _ => MunroExtended,
+            };
+        }
         return false;
     }
     public static void MenuButtonHelper_SetupText3(MenuButtonHelper __instance)
