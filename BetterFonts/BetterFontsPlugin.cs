@@ -15,8 +15,6 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
     public void Awake()
     {
         Harmony harmony = new Harmony(Info.Metadata.GUID);
-        harmony.Patch(AccessTools.Method(typeof(GameController), "Awake2"), null,
-                      new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(GameController_Awake2))));
         harmony.Patch(AccessTools.Method(typeof(GameController), "Update"), null,
                       new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(GameController_Update))));
         harmony.Patch(AccessTools.Method(typeof(GameController), nameof(GameController.SetFont)),
@@ -36,21 +34,14 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
         harmony.Patch(AccessTools.Method(typeof(TalkText), "Start"),
                       null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(TalkText_Start))));
     }
-    public static void GameController_Awake2(ref IEnumerator __result)
+    public IEnumerator Start()
     {
-        __result = PassThrough(__result);
-        static IEnumerator PassThrough(IEnumerator original)
-        {
-            AssetBundleCreateRequest req = AssetBundle.LoadFromMemoryAsync(Properties.Resources.BetterFontsBundle);
-            yield return req;
-            MunroExtended = req.assetBundle.LoadAsset<Font>("MunroExtended");
-            FusionPixel = req.assetBundle.LoadAsset<Font>("FusionPixel");
-            EditUndoBRK = req.assetBundle.LoadAsset<Font>("EditUndoBRK");
-            PressStart2P = req.assetBundle.LoadAsset<Font>("PressStart2P-Regular");
-
-            while (original.MoveNext())
-                yield return original.Current;
-        }
+        AssetBundleCreateRequest req = AssetBundle.LoadFromMemoryAsync(Properties.Resources.BetterFontsBundle);
+        yield return req;
+        MunroExtended = req.assetBundle.LoadAsset<Font>("MunroExtended");
+        FusionPixel = req.assetBundle.LoadAsset<Font>("FusionPixel");
+        EditUndoBRK = req.assetBundle.LoadAsset<Font>("EditUndoBRK");
+        PressStart2P = req.assetBundle.LoadAsset<Font>("PressStart2P-Regular");
     }
     public static void GameController_Update(GameController __instance)
     {
@@ -67,20 +58,22 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
     }
     public static bool GameController_SetFont(GameController __instance, Text myText)
     {
-        string language = __instance.sessionDataBig.gameLanguage;
+        string? language = __instance.sessionDataBig?.gameLanguage;
         if (language is @"schinese" or @"koreana")
         {
-            myText.font = FusionPixel;
+            if (FusionPixel is not null)
+                myText.font = FusionPixel;
         }
         else
         {
-            myText.font = myText.font.name switch
+            Font? newFont = myText.font?.name switch
             {
                 "Munro" or "munro2" or "munro-expanded" or "MunroNarrow" or "MunroExtended" or "FusionPixel" => MunroExtended,
                 @"editundo" or "EditUndoBRK" => EditUndoBRK,
                 @"joystix monospace" or "PressStart2P-Regular" => PressStart2P,
                 _ => MunroExtended,
             };
+            if (newFont is not null) myText.font = newFont;
         }
         return false;
     }
