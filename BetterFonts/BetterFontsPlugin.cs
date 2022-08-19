@@ -15,6 +15,8 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
     public void Awake()
     {
         Harmony harmony = new Harmony(Info.Metadata.GUID);
+        harmony.Patch(AccessTools.Method(typeof(GameController), "Awake2"), null,
+                      new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(GameController_Awake2))));
         harmony.Patch(AccessTools.Method(typeof(GameController), "Update"), null,
                       new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(GameController_Update))));
         harmony.Patch(AccessTools.Method(typeof(GameController), nameof(GameController.SetFont)),
@@ -34,14 +36,21 @@ public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
         harmony.Patch(AccessTools.Method(typeof(TalkText), "Start"),
                       null, new HarmonyMethod(typeof(BetterFontsPlugin).GetMethod(nameof(TalkText_Start))));
     }
-    public IEnumerator Start()
+    public static void GameController_Awake2(ref IEnumerator __result)
     {
-        AssetBundleCreateRequest req = AssetBundle.LoadFromMemoryAsync(Properties.Resources.BetterFontsBundle);
-        yield return req;
-        MunroExtended = req.assetBundle.LoadAsset<Font>("MunroExtended");
-        FusionPixel = req.assetBundle.LoadAsset<Font>("FusionPixel");
-        EditUndoBRK = req.assetBundle.LoadAsset<Font>("EditUndoBRK");
-        PressStart2P = req.assetBundle.LoadAsset<Font>("PressStart2P-Regular");
+        __result = PassThrough(__result);
+        static IEnumerator PassThrough(IEnumerator original)
+        {
+            AssetBundleCreateRequest req = AssetBundle.LoadFromMemoryAsync(Properties.Resources.BetterFontsBundle);
+            yield return req;
+            MunroExtended = req.assetBundle.LoadAsset<Font>("MunroExtended");
+            FusionPixel = req.assetBundle.LoadAsset<Font>("FusionPixel");
+            EditUndoBRK = req.assetBundle.LoadAsset<Font>("EditUndoBRK");
+            PressStart2P = req.assetBundle.LoadAsset<Font>("PressStart2P-Regular");
+
+            while (original.MoveNext())
+                yield return original.Current;
+        }
     }
     public static void GameController_Update(GameController __instance)
     {
