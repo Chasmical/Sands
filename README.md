@@ -59,3 +59,15 @@ The speed is unbalanced, made primarily for one-hand mod debugging.
 
 Adjust the camera zoom with numpad `+`/`-`. `Enter` resets the zoom.  
 `Print` creates a 4x-resolution snapshot of the screen (without the interface).
+
+## True Crepes
+
+Makes Crepes gib blue gibs. Blahds gib bloody gibs.
+
+## Super Outhouse
+
+Random idea from ML#5653: an outhouse with 12 Soldiers inside (video: https://youtu.be/TkOu-XOvMoI).
+
+## Oops! All Killer Robots
+
+All level dwellers (even ones at the Home Base) are Killer Robots!
