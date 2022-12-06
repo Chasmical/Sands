@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace BetterFonts;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.betterfonts", "S&S: Better Fonts", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.betterfonts", "S&S: Better Fonts", "1.1.0")]
 public class BetterFontsPlugin : BepInEx.BaseUnityPlugin
 {
     private static Font? MunroExtended;
