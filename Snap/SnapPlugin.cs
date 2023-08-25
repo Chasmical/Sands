@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 namespace Snap;
-[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.snap", "S&S: Snap", "1.0.0")]
+[BepInEx.BepInPlugin(@"abbysssal.streetsofrogue.snap", "S&S: Snap", "1.0.1")]
 public class SnapPlugin : BepInEx.BaseUnityPlugin
 {
     private float setZoom = -1f;
@@ -11,9 +11,11 @@ public class SnapPlugin : BepInEx.BaseUnityPlugin
     {
         GameController gc = GameController.gameController;
 
-        if (Input.GetKeyDown(KeyCode.KeypadPlus)) setZoom = setZoom < 0f ? gc.cameraScript.zoomLevel : Math.Min(setZoom + 0.1f, 10f);
-        if (Input.GetKeyDown(KeyCode.KeypadMinus)) setZoom = setZoom < 0f ? gc.cameraScript.zoomLevel : Math.Max(setZoom - 0.1f, 0f);
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals) || Input.GetKeyDown(KeyCode.KeypadPlus))
+            setZoom = setZoom < 0f ? gc.cameraScript.zoomLevel : Math.Min(setZoom + 0.1f, 10f);
+        if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Underscore) || Input.GetKeyDown(KeyCode.KeypadMinus))
+            setZoom = setZoom < 0f ? gc.cameraScript.zoomLevel : Math.Max(setZoom - 0.1f, 0f);
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             setZoom = -1f;
             gc.cameraScript.zoomLevel = 1f;
@@ -21,11 +23,12 @@ public class SnapPlugin : BepInEx.BaseUnityPlugin
 
         if (setZoom > 0f) gc.cameraScript.zoomLevel = setZoom;
 
-        if (Input.GetKey(KeyCode.Print))
+        if (Input.GetKeyDown(KeyCode.Print) || Input.GetKeyDown(KeyCode.KeypadMultiply) || Input.GetKeyDown(KeyCode.KeypadDivide))
         {
             try
             {
                 Camera camera = gc.cameraScript.actualCamera.ScreenCamera;
+                Directory.CreateDirectory(Path.Combine(BepInEx.Paths.GameRootPath, "Snapshots"));
                 string path = Path.Combine(BepInEx.Paths.GameRootPath, "Snapshots", $"{DateTime.Now:yy-MM-dd HHmmss}.png");
 
                 static void SetInterface(bool value)
@@ -37,7 +40,7 @@ public class SnapPlugin : BepInEx.BaseUnityPlugin
                     gc.questMarkerSmallList.ForEach(q => q.gameObject.SetActive(value));
                 }
 
-                const int scale = 4;
+                int scale = Input.GetKeyDown(KeyCode.KeypadDivide) ? 4 : 2;
                 int width = Screen.width * scale;
                 int height = Screen.height * scale;
 
@@ -70,5 +73,15 @@ public class SnapPlugin : BepInEx.BaseUnityPlugin
                 throw;
             }
         }
+    }
+    public void FixedUpdate()
+    {
+        GameController gc = GameController.gameController;
+        if (setZoom > 0f) gc.cameraScript.zoomLevel = setZoom;
+    }
+    public void LateUpdate()
+    {
+        GameController gc = GameController.gameController;
+        if (setZoom > 0f) gc.cameraScript.zoomLevel = setZoom;
     }
 }

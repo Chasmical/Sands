@@ -57,8 +57,10 @@ The speed is unbalanced, made primarily for one-hand mod debugging.
 
 ## Snap
 
-Adjust the camera zoom with numpad `+`/`-`. `Enter` resets the zoom.  
-`Print` creates a 4x-resolution snapshot of the screen (without the interface).
+Adjust the camera zoom with regular/numpad `+`/`-`. `Enter` resets the zoom.  
+`Print` or numpad `*` creates a 2x-resolution snapshot of the screen (without the interface).
+Numpad `/` creates a 4x-resolution screenshot.
+Screenshots are saved in /Streets of Rogue/Snapshots/.
 
 ## True Crepes
 
